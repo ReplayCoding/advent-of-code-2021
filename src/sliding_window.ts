@@ -1,11 +1,17 @@
-import {countIncreases} from './count_increases';
+import { countIncreases } from './count_increases';
 
-export function countSlidingWindowIncreases(depths: number[]): number {
-  let paddedDepths = depths.concat([0, 0]);
-  let sums: number[] = [];
-  for (let i = 0; i < depths.length; i++) {
-    sums.push(paddedDepths[i] + paddedDepths[i + 1] + paddedDepths[i + 2])
+export function generateSlidingWindow(inputs: number[]): number[][] {
+  let paddedDepths = inputs.concat([0, 0]);
+  let windows: number[][] = [];
+  for (let i = 0; i < inputs.length; i++) {
+    windows.push([paddedDepths[i], paddedDepths[i + 1], paddedDepths[i + 2]])
   }
 
-  return countIncreases(sums);
+  return windows;
+}
+
+export function countSlidingWindowIncreases(depths: number[]): number {
+  return countIncreases(
+    generateSlidingWindow(depths).map(n => n.reduce((x, y) => x + y))
+  );
 }
