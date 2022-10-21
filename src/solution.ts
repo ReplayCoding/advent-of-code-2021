@@ -1,4 +1,4 @@
-import { countIncreases } from './day1_p1';
+import { countIncreases } from './count_increases';
 import { readFileSync } from 'fs';
 
 function day1_p1() {

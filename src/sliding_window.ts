@@ -1,4 +1,4 @@
-import {countIncreases} from './day1_p1';
+import {countIncreases} from './count_increases';
 
 export function countSlidingWindowIncreases(depths: number[]): number {
   let paddedDepths = depths.concat([0, 0]);
