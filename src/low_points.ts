@@ -4,7 +4,7 @@ export function isLowPoint(prev: number, cur: number, next: number): boolean {
 
 // Assumes that the grid has a consistent width and height.
 export function locateLowPointsInGrid(grid: number[][]): [number, number][] {
-  let maximum = 9; // TODO: autogenerate this
+  let maximum = Math.max(...grid.flat()) + 1;
   let paddingHorizontal: number[] = Array(grid[0].length).fill(maximum);
 
   // Builds a grid with padding around it
