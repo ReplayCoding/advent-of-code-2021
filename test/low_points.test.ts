@@ -1,10 +1,26 @@
 import { getRiskLevelOfGrid, getRiskLevelOfPoints, isLowPoint, locateLowPointsInGrid } from '../src/low_points';
 
 test('isLowPoint correctly detects low points', () => {
-  expect(isLowPoint(1, 0, 1)).toBe(true)
-  expect(isLowPoint(9, 2, 3)).toBe(true)
-  expect(isLowPoint(1, 2, 1)).toBe(false)
-  expect(isLowPoint(1, 2, 3)).toBe(false)
+  expect(isLowPoint({
+    prev: 1,
+    current: 0,
+    next: 1
+  })).toBe(true)
+  expect(isLowPoint({
+    prev: 9,
+    current: 2,
+    next: 3
+  })).toBe(true)
+  expect(isLowPoint({
+    prev: 1,
+    current: 2,
+    next: 1
+  })).toBe(false)
+  expect(isLowPoint({
+    prev: 1,
+    current: 2,
+    next: 3
+  })).toBe(false)
 })
 
 test('getRiskLevelOfPoints returns the correct risk level', () => {
@@ -18,7 +34,7 @@ test('locateLowPointsInGrid returns coords of low points in grid', () => {
   expect(locateLowPointsInGrid([
     [1]
   ])).toStrictEqual([
-    [0, 0]
+    { x: 0, y: 0 }
   ])
 
   expect(locateLowPointsInGrid([
@@ -26,7 +42,7 @@ test('locateLowPointsInGrid returns coords of low points in grid', () => {
     [2, 1, 2],
     [2, 2, 2],
   ])).toStrictEqual([
-    [1,1]
+    { x: 1, y: 1 }
   ])
 
   expect(locateLowPointsInGrid([
@@ -34,7 +50,7 @@ test('locateLowPointsInGrid returns coords of low points in grid', () => {
     [2, 2, 1],
     [2, 2, 2],
   ])).toStrictEqual([
-    [2, 1]
+    { x: 2, y:  1 }
   ])
 
   expect(locateLowPointsInGrid([
@@ -42,8 +58,8 @@ test('locateLowPointsInGrid returns coords of low points in grid', () => {
     [2, 1, 2],
     [3, 2, 4],
   ])).toStrictEqual([
-    [1, 1],
-    [2, 0]
+    { x: 1, y:  1 },
+    { x: 2, y:  0 }
   ])
 })
 
