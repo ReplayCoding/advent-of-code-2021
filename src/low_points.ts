@@ -16,8 +16,8 @@ export function locateLowPointsInGrid(grid: number[][]): [number, number][] {
   for (let x = 1; x < grid[0].length - 1; x++) {
     for (let y = 1; y < grid.length - 1; y++) {
       type WindowOfPoints = [number, number, number]
-      let windowX: WindowOfPoints = [grid[y - 1][x], grid[y][x], grid[y + 1][x]]
-      let windowY: WindowOfPoints = [grid[y][x - 1], grid[y][x], grid[y][x + 1]]
+      let windowX: WindowOfPoints = [grid[y][x - 1], grid[y][x], grid[y][x + 1]]
+      let windowY: WindowOfPoints = [grid[y - 1][x], grid[y][x], grid[y + 1][x]]
 
       if (isLowPoint(...windowX) && isLowPoint(...windowY)) {
         locationsInPaddedGrid.push([x, y]);
