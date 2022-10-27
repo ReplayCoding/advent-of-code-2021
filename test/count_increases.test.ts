@@ -1,4 +1,4 @@
-import {countIncreases} from '../src/day1_p1';
+import { countIncreases } from '../src/count_increases';
 
 test('given a zero sized array, return zero increases', () => {
   expect(countIncreases([])).toBe(0);
