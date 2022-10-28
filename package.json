@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "solution": "ts-node src/solutions.ts"
   },
   "dependencies": {
     "@types/jest": "^29.2.0",
