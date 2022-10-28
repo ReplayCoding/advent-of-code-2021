@@ -1,16 +1,20 @@
+export function getRiskLevelOfGrid(grid: number[][]): number {
+  let lowPoints =
+    locateLowPointsInGrid(grid)
+    .map(coord => grid[coord.y][coord.x]);
+
+  return getRiskLevelOfPoints(lowPoints);
+}
+
+export function getRiskLevelOfPoints(heights: number[]): number {
+  return heights
+    .map(height => height + 1)
+    .reduce((a, b) => a + b);
+}
+
 interface Point {
   x: number,
   y: number,
-}
-
-interface WindowOfNums {
-  prev: number,
-  current: number,
-  next: number
-}
-
-export function isLowPoint(nums: WindowOfNums): boolean {
-  return (nums.prev > nums.current) && (nums.next > nums.current);
 }
 
 // Assumes that the grid has a consistent width and height.
@@ -50,17 +54,12 @@ export function locateLowPointsInGrid(grid: number[][]): Point[] {
   return locationsInPaddedGrid;
 }
 
-export function getRiskLevelOfPoints(heights: number[]): number {
-  return heights
-    .map(height => height + 1)
-    .reduce((a, b) => a + b);
+interface WindowOfNums {
+  prev: number,
+  current: number,
+  next: number
 }
 
-
-export function getRiskLevelOfGrid(grid: number[][]): number {
-  let lowPoints =
-    locateLowPointsInGrid(grid)
-    .map(coord => grid[coord.y][coord.x]);
-
-  return getRiskLevelOfPoints(lowPoints);
+export function isLowPoint(nums: WindowOfNums): boolean {
+  return (nums.prev > nums.current) && (nums.next > nums.current);
 }
